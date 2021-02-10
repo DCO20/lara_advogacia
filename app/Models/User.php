@@ -27,7 +27,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'utype'
+        'utype',
+        'phone',
+        'link_process'
     ];
 
     /**

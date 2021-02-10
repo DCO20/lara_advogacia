@@ -13,20 +13,22 @@
                    </tr>
                </thead>
                <tbody>
-                  @foreach ($users as $user)
+
                   <tr style="color: #aa9166">
                      <td width="72"> 
                         <img src="" alt="" style="max-width: 72px;">
                         </td>
-                        <td>{{$user->name}}</td>
-                        <td>{{$user->email}}</td>
-                        <td> 14 99999999</td>
-                        <td>Consultar</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                        </tr>
-                  @endforeach
+                 
                </tbody>
            </table>
          </div>
       </div>
    </div>
 </div>
+
+

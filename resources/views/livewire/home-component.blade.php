@@ -8,7 +8,7 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="{{ url(asset('assets/img/carousel-1.jpg'))}}" alt="Carousel Image">
+                <img src="{{ url(asset('assets/img/carousel-3.jpg'))}}" alt="Carousel Image">
                 <div class="carousel-caption">
                     <h1 class="animated fadeInLeft">Nós lutamos por sua justiça</h1>
                     <p class="animated fadeInRight">Lorem ipsum dolor sit amet elit. Mauris odio mauris...</p>
@@ -26,7 +26,7 @@
             </div>
 
             <div class="carousel-item">
-                <img src="{{ url(asset('assets/img/carousel-3.jpg'))}}" alt="Carousel Image">
+                <img src="{{ url(asset('assets/img/carousel-1.jpg'))}}" alt="Carousel Image">
                 <div class="carousel-caption">
                     <h1 class="animated fadeInLeft">Nós lutamos pelo seu privilégio</h1>
                     <p class="animated fadeInRight">Lorem ipsum dolor sit amet elit. Mauris odio mauris...</p>
@@ -265,74 +265,27 @@
                 <h2>Conheça nossos advogados especialistas</h2>
             </div>
             <div class="row">
+                @foreach ($teams as $team)
                 <div class="col-lg-3 col-md-6">
+                    
                     <div class="team-item">
                         <div class="team-img">
-                            <img src="{{ url(asset('assets/img/team-1.jpg'))}}" alt="Team Image">
+                            <img src="{{ url("storage/{$team->image}") }}" alt="{{ $team->name }}" style="max-width: 90px;">
                         </div>
                         <div class="team-text">
-                            <h2>Adam Phillips</h2>
-                            <p>Familiar</p>
+                            <h2>{{ $team->name }}</h2>
+                            <p>{{ $team->occupation }}</p>
                             <div class="team-social">
-                                <a class="social-tw" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="social-fb" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="social-li" href=""><i class="fab fa-linkedin-in"></i></a>
-                                <a class="social-in" href=""><i class="fab fa-instagram"></i></a>
+                                <a class="social-tw" href="{{ $team->link_twitter }}"><i class="fab fa-twitter"></i></a>
+                                <a class="social-fb" href="{{ $team->link_facebook }}"><i class="fab fa-facebook-f"></i></a>
+                                <a class="social-li" href="{{ $team->link_linkdin }}"><i class="fab fa-linkedin-in"></i></a>
+                                <a class="social-in" href="{{ $team->link_instagram }}"><i class="fab fa-instagram"></i></a>
                             </div>
                         </div>
                     </div>
+                    
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="team-item">
-                        <div class="team-img">
-                            <img src="{{ url(asset('assets/img/team-2.jpg'))}}" alt="Team Image">
-                        </div>
-                        <div class="team-text">
-                            <h2>Dylan Adams</h2>
-                            <p>Criminal</p>
-                            <div class="team-social">
-                                <a class="social-tw" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="social-fb" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="social-li" href=""><i class="fab fa-linkedin-in"></i></a>
-                                <a class="social-in" href=""><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="team-item">
-                        <div class="team-img">
-                            <img src="{{ url(asset('assets/img/team-3.jpg'))}}" alt="Team Image">
-                        </div>
-                        <div class="team-text">
-                            <h2>Gloria Edwards</h2>
-                            <p>Educacional</p>
-                            <div class="team-social">
-                                <a class="social-tw" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="social-fb" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="social-li" href=""><i class="fab fa-linkedin-in"></i></a>
-                                <a class="social-in" href=""><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="team-item">
-                        <div class="team-img">
-                            <img src="{{ url(asset('assets/img/team-4.jpg'))}}" alt="Team Image">
-                        </div>
-                        <div class="team-text">
-                            <h2>Josh Dunn</h2>
-                            <p>Empresarial</p>
-                            <div class="team-social">
-                                <a class="social-tw" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="social-fb" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="social-li" href=""><i class="fab fa-linkedin-in"></i></a>
-                                <a class="social-in" href=""><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
@@ -677,7 +630,7 @@
                 <h2>Assine nosso boletim informativo</h2>
             </div>
             <div class="form">
-                <input class="form-control" placeholder="Email here">
+                <input class="form-control" placeholder="Digite seu email">
                 <button class="btn">Enviar</button>
             </div>
         </div>

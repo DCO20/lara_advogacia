@@ -87,7 +87,7 @@
                                           Ola: {{Auth::user()->name}}
                                         </button>
                                             <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton">
-                                                <a class="mr-2" href="{{route('admin.dashboard')}}"><i class="fas fa-home"></i> Painel</a>
+                                                <a class="mr-2" href="{{route('users.index')}}"><i class="fas fa-home"></i> Painel</a>
                                                 <a href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i> Sair</a>
                                                 <form id="logout-form" method="POST" action="{{route('logout')}}" >
                                                     @csrf

@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Livewire\Admin\AdminDashboardComponent;
+use App\Http\Controllers\Admin\TeamController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Livewire\BlogComponent;
 use App\Http\Livewire\HomeComponent;
 use App\Http\Livewire\User\UserDashboardComponent;
@@ -16,7 +17,14 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
 });
 
 /** Admin */
-Route::middleware(['auth:sanctum', 'verified', 'isadmin'])->group(function(){
-    Route::get('/admin/painel', AdminDashboardComponent::class)->name('admin.dashboard');
+Route::prefix('admin')->middleware(['auth:sanctum', 'verified', 'isadmin'])->group(function(){
+
+    //User
+    Route::any('users/search', [UserController::class, 'search'])->name('users.search');
+    Route::resource('users', UserController::class);
+
+    //Team
+    Route::any('teams/search', [UserController::class, 'search'])->name('teams.search');
+    Route::resource('teams', TeamController::class);
 });
 
