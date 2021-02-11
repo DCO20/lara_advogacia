@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\MasterController;
+use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Livewire\BlogComponent;
@@ -26,5 +28,9 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'verified', 'isadmin'])->gro
     //Team
     Route::any('teams/search', [UserController::class, 'search'])->name('teams.search');
     Route::resource('teams', TeamController::class);
+
+    //Post
+    Route::any('posts/search', [UserController::class, 'search'])->name('posts.search');
+    Route::resource('posts', PostController::class);
 });
 

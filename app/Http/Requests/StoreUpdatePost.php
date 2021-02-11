@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreUpdateTeam extends FormRequest
+class StoreUpdatePost extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,15 +26,10 @@ class StoreUpdateTeam extends FormRequest
         $id = $this->segment(3);
 
         $rules = [
-            'name' => ['required', 'string', 'min:3', 'max:255'],
-            'email' => ['required', 'string', 'email', 'min:3', 'max:255', "unique:teams,email,{$id},id"],
-            'occupation' => ['required', 'string', 'max:250'],
-            'phone' => ['required', 'string', 'min:6', 'max:16'],
+            'title' => ['required', 'string', 'min:3', 'max:255', "unique:posts,title,{$id},id"],
+            'about' => ['required', 'string', 'min:5', 'max:255'],
+            'content' => ['required', 'min:5', 'max:1000'],
             'image' => ['required', 'image'],
-            'link_facebook' => ['required','string', 'max:250'],
-            'link_linkdin' => ['required', 'string', 'max:250'],
-            'link_instagram' => ['required','string','max:250'],
-            'link_twitter' => ['required', 'string', 'max:250'],
         ];
 
         if ($this->method() == 'PUT') {

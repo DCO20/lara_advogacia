@@ -6,7 +6,7 @@
 </div>
 <div class="form-group">
     <label>E-mail:</label>
-    <input type="email" name="email" class="form-control" placeholder="Nome:" value="{{ $team->email ?? old('email') }}">
+    <input type="email" name="email" class="form-control" placeholder="Email:" value="{{ $team->email ?? old('email') }}">
 </div>
 <div class="form-group">
     <label>Ocupacão:</label>
@@ -18,7 +18,7 @@
 </div>
 <div class="form-group">
     <label> Imagem:</label>
-    <input type="file" name="image" class="form-control">
+    <input type="file" name="image" id="image" class="form-control">
 </div>
 <div class="form-group">
     <label>Link do Facebook:</label>

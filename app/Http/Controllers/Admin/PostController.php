@@ -3,69 +3,70 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreUpdateTeam;
-use App\Models\Team;
+use App\Http\Requests\StoreUpdatePost;
+use App\Models\Post;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class TeamController extends Controller
+class postController extends Controller
 {
     protected $repository;
 
-    public function __construct(Team $team)
+    public function __construct(Post $post)
     {
-        $this->repository = $team;
+        $this->repository = $post;
 
     }
 
     public function index()
     {
-        $teams = $this->repository->latest()->paginate();
+        $posts = $this->repository->latest()->paginate();
 
-        return view('admin.pages.teams.index', compact('teams'));
+        return view('admin.pages.posts.index', compact('posts'));
     }
 
     public function create()
     {
-        return view('admin.pages.teams.create');
+        return view('admin.pages.posts.create');
     }
 
-    public function store(StoreUpdateTeam $request)
+    public function store(StoreUpdatePost $request)
     {
         $data = $request->all();
 
         if ($request->image->isValid()) {
-            $image = $request->image->store("teams");
+            $image = $request->image->store("posts");
             $data['image'] = $image;
         }
 
         $this->repository->create($data);
 
-        return redirect()->route('teams.index')->with('message', 'Usuário criado com sucesso.');
+        return redirect()->route('posts.index')->with('message', 'Usuário criado com sucesso.');
     }
 
     public function show($id)
     {
-        if (!$team = $this->repository->find($id)) {
+        if (!$post = $this->repository->find($id)) {
             return redirect()->back();
         }
 
-        return view('admin.pages.teams.show', compact('team'));
+        return view('admin.pages.posts.show', compact('post'));
     }
 
     public function edit($id)
     {
-        if (!$team = $this->repository->find($id)) {
+        if (!$post = $this->repository->find($id)) {
             return redirect()->back();
         }
 
-        return view('admin.pages.teams.edit', compact('team'));
+        return view('admin.pages.posts.edit', compact('post'));
     }
 
    
-    public function update(StoreUpdateTeam $request, $id)
+    public function update(StoreUpdatePost $request, $id)
     {
-        if (!$team = $this->repository->find($id)) {
+        if (!$post = $this->repository->find($id)) {
             return redirect()->back();
         }
         $data = $request->all();
@@ -73,27 +74,27 @@ class TeamController extends Controller
 
         if ($request->hasFile('image') && $request->image->isValid()) {
 
-            if (Storage::exists($team->image)) {
-                Storage::delete($team->image);
+            if (Storage::exists($post->image)) {
+                Storage::delete($post->image);
             }
 
-            $data['image'] = $request->image->store("teams");
+            $data['image'] = $request->image->store("posts");
         }
 
-        $team->update($data);
+        $post->update($data);
 
-        return redirect()->route('teams.index')->with('message', 'Usuário editado com sucesso.');
+        return redirect()->route('posts.index')->with('message', 'Usuário editado com sucesso.');
     }
 
     public function destroy($id)
     {
-        if (!$team = $this->repository->find($id)) {
+        if (!$post = $this->repository->find($id)) {
             return redirect()->back();
         }
 
-        $team->delete();
+        $post->delete();
 
-        return redirect()->route('teams.index')->with('error', 'Usuário excluído com sucesso.');
+        return redirect()->route('posts.index')->with('error', 'Usuário excluído com sucesso.');
     }
 
     /**
@@ -106,7 +107,7 @@ class TeamController extends Controller
     {
         $filters = $request->only('filter');
 
-        $teams = $this->repository
+        $posts = $this->repository
                             ->where(function($query) use ($request) {
                                 if ($request->filter) {
                                     $query->orWhere('name', 'LIKE', "%{$request->filter}%");
@@ -116,6 +117,6 @@ class TeamController extends Controller
                             ->latest()
                             ->paginate();
 
-        return view('admin.pages.teams.index', compact('teams', 'filters'));
+        return view('admin.pages.posts.index', compact('posts', 'filters'));
     }
 }

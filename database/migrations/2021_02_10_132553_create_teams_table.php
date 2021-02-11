@@ -19,7 +19,7 @@ class CreateTeamsTable extends Migration
             $table->string('email')->unique();
             $table->string('occupation')->nullable();
             $table->string('phone')->nullable();
-            $table->string('image')->nullable();
+            $table->string('image');
             $table->string('link_facebook')->nullable();
             $table->string('link_linkdin')->nullable();
             $table->string('link_instagram')->nullable();
